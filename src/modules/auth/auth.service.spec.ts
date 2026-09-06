@@ -77,8 +77,8 @@ describe('AuthService - signUp', () => {
     expect(hashServiceMock.hash).toHaveBeenCalledWith('SecretPassword123!');
     expect(redisServiceMock.setex).toHaveBeenCalledWith(
       'tempUser:john@example.com',
-      15 * 60,
       expect.any(String),
+      15 * 60,
     );
     expect(mailServiceMock.sendVerifyEmail).toHaveBeenCalledWith(
       'john@example.com',

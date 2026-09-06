@@ -1,3 +1,8 @@
+jest.mock('sanitize-html', () => ({
+  __esModule: true,
+  default: (str: string) => str,
+}));
+
 import { CreatePromoDto, createPromoSchema } from './create-promo.dto';
 
 describe('CreatePromoDto', () => {

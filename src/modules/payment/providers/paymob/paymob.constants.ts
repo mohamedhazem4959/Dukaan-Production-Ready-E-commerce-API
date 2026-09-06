@@ -1,0 +1,1 @@
+export const PAYMOB_CLIENT = Symbol('PAYMOB_CLIENT');

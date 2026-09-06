@@ -1,0 +1,1 @@
+export const PAYMENT_GATWAY = Symbol('PAYMENT_GATWAY');

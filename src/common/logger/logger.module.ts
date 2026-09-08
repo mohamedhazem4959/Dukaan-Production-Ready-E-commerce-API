@@ -4,6 +4,9 @@ import { LoggerModule } from 'nestjs-pino';
     imports: [
         LoggerModule.forRoot({
             pinoHttp: {
+                autoLogging: {
+                    ignore: (req) => req.url?.includes('/ping') ?? false,
+                },
                 level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
 
                 transport:

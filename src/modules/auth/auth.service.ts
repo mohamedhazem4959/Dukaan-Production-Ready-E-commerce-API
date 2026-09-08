@@ -5,8 +5,6 @@ import { LoginUserDto } from './dto/login-user.dto';
 import { JwtService } from '@nestjs/jwt';
 import { AccessToken } from './interfaces/access-token.interface';
 import crypto from 'crypto'
-import { CACHE_MANAGER } from '@nestjs/cache-manager';
-import { type Cache } from 'cache-manager';
 import { TempUser } from './interfaces/temp-user.interface';
 import { MailService } from 'src/mail/mail.service';
 import { ConfigService } from '@nestjs/config';

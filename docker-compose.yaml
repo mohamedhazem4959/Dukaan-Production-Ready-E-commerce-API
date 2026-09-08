@@ -1,0 +1,83 @@
+services:
+  database:
+    image: postgres:15
+    container_name: postgres_db
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_DB=e-commerce
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis_cache
+    restart: always
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    image: mohamedhazem4959/dukaan:v1.0.5
+    container_name: Dukaan-api
+    restart: unless-stopped
+    depends_on:
+      database:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      - DATABASE_URL=postgresql://postgres:${DATABASE_PASSWORD}@database:5432/e-commerce?schema=public
+      - JWT_SECRET=${JWT_SECRET}
+      - NODE_ENV=${NODE_ENV}
+      - FRONTEND_ORIGIN=${FRONTEND_ORIGIN} 
+      - REDIS_URL=redis://redis:6379
+      - MAIL_HOST=${MAIL_HOST}
+      - MAIL_PORT=${MAIL_PORT}
+      - MAIL_USER=${MAIL_USER}
+      - MAIL_PASS=${MAIL_PASS}
+      - VERIFY_URL=${VERIFY_URL}
+      - CLOUDINARY_CLOUD_NAME=${CLOUDINARY_CLOUD_NAME}
+      - CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}
+      - CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET}
+      - PAYMOB_API_KEY=${PAYMOB_API_KEY}
+      - PAYMOB_PUBLIC_KEY=${PAYMOB_PUBLIC_KEY}
+      - PAYMOB_SECRET_KEY=${PAYMOB_SECRET_KEY}
+      - PAYMOB_HMAC=${PAYMOB_HMAC}
+      - PAYMOB_INTEGRATION_ID=${PAYMOB_INTEGRATION_ID}
+      - PAYMOB_BASE_URL=${PAYMOB_BASE_URL}
+      - THROTTLE_TTL=${THROTTLE_TTL}
+      - THROTTLE_LIMIT=${THROTTLE_LIMIT}
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+    healthcheck:
+      test: [ "CMD-SHELL", "wget -qO- http://localhost:3000/api/v1/ping || exit 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    command: >
+      sh -c "
+        npx prisma migrate deploy &&
+        npm run start:prod
+      "
+
+volumes:
+  postgres_data:
+  redis_data:

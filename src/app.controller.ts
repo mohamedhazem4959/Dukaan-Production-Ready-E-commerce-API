@@ -1,19 +1,19 @@
-import { Controller, Get, UseGuards } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
-import { ApiBearerAuth } from '@nestjs/swagger';
-import { AuthGuard } from './common/guard/auth.guard';
+import { SkipThrottle } from '@nestjs/throttler';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
+  @SkipThrottle()
   @Get('ping')
   ping() {
     return {
       success: true,
       message: 'pong',
       timestamp: new Date().toISOString(),
-      uptime: process.uptime()
-    }
+      uptime: process.uptime(),
+    };
   }
 }

@@ -1,14 +1,25 @@
-import { Injectable, OnModuleDestroy } from '@nestjs/common';
+import { Injectable, Logger, OnModuleDestroy } from '@nestjs/common';
 import Redis from 'ioredis';
+import "dotenv/config";
 
 @Injectable()
 export class RedisService implements OnModuleDestroy {
+  private readonly logger = new Logger(RedisService.name);
   private readonly redis: Redis;
 
   constructor() {
+
     this.redis = new Redis(
-      process.env.REDIS_URL ?? 'redis://localhost:7001',
+      process.env.NODE_ENV === 'development' ? process.env.REDIS_URL! : process.env.REDIS_URL_PROD! as string
     );
+
+    this.redis.on('connect', () => {
+      console.log('Successfully connected to Upstash Redis!');
+    });
+
+    this.redis.on('error', (err) => {
+      console.error('Redis error:', err);
+    });
   }
 
   getClient(): Redis {

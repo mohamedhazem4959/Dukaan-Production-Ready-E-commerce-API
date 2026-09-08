@@ -20,6 +20,11 @@ export class RequestLoggingInterceptor implements NestInterceptor {
         const request = context.switchToHttp().getRequest();
         const response = context.switchToHttp().getResponse();
 
+        // Skip logging for healthcheck endpoint
+        if (request.originalUrl?.includes('/ping') || request.url?.includes('/ping')) {
+            return next.handle();
+        }
+
         const requestId = request.headers['x-request-id'] ?? randomUUID();
         response.setHeader('X-Request-ID', requestId);
         const start = Date.now();

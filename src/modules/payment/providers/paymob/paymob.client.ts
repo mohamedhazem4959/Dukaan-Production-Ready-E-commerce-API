@@ -1,7 +1,7 @@
 import { Injectable, InternalServerErrorException, Logger } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { PaymobCreateIntentionRequest, PaymobCreateIntentionResponse } from "./paymob.types";
-import { RedisService } from "src/common/services/redis.service";
+import { RedisService } from "../../../../common/services/redis.service";
 
 @Injectable()
 export class PaymobClient {

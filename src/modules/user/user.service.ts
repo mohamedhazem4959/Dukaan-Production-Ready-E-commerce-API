@@ -1,9 +1,9 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { AddUserAddressDto } from './dto/add-address.dto';
-import { PrismaService } from 'src/prisma.service';
+import { PrismaService } from '../../prisma.service';
 import { UpdateUserInfoDto } from './dto/update-user.dto';
 import { ChangePasswordDto } from './dto/change-password.dto';
-import { HashingService } from 'src/common/services/hashing.service';
+import { HashingService } from '../../common/services/hashing.service';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/wasm-compiler-edge';
 
 @Injectable()

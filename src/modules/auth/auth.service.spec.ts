@@ -1,11 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthService } from './auth.service';
-import { PrismaService } from 'src/prisma.service';
-import { HashingService } from 'src/common/services/hashing.service';
+import { PrismaService } from '../../prisma.service';
+import { HashingService } from '../../common/services/hashing.service';
 import { JwtService } from '@nestjs/jwt';
-import { MailService } from 'src/mail/mail.service';
+import { MailService } from '../../mail/mail.service';
 import { ConfigService } from '@nestjs/config';
-import { RedisService } from 'src/common/services/redis.service';
+import { RedisService } from '../../common/services/redis.service';
 import { UnauthorizedException } from '@nestjs/common';
 
 describe('AuthService - signUp', () => {

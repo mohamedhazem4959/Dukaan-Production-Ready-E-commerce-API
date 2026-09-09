@@ -1,5 +1,5 @@
 import { createZodDto } from "nestjs-zod";
-import { zSafeString } from "src/common/utils/zod.utils";
+import { zSafeString } from "../../../common/utils/zod.utils";
 import z from "zod";
 
 export const updateUserInfoSchema = z.object({

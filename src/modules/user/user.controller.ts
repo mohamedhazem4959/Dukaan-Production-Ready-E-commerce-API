@@ -4,7 +4,7 @@ import { UserService } from './user.service';
 import { type Request } from 'express';
 import { UpdateUserInfoDto } from './dto/update-user.dto';
 import { ChangePasswordDto } from './dto/change-password.dto';
-import { AuthGuard } from 'src/common/guard/auth.guard';
+import { AuthGuard } from '../../common/guard/auth.guard';
 @Controller('user')
 export class UserController {
 

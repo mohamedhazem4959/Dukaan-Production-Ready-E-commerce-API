@@ -1,6 +1,6 @@
 import { createZodDto } from 'nestjs-zod';
-import { zSafeString } from 'src/common/utils/zod.utils';
-import { paymentMethod } from 'src/generated/prisma/enums';
+import { zSafeString } from '../../../common/utils/zod.utils';
+import { paymentMethod } from '../../../generated/prisma/enums';
 import { z } from 'zod';
 
 const createOrderSchema = z.object({

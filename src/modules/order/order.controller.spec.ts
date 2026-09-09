@@ -8,7 +8,7 @@ import { JwtService } from '@nestjs/jwt';
 import { Reflector } from '@nestjs/core';
 import { OrderController } from './order.controller';
 import { OrderService } from './order.service';
-import { RedisService } from 'src/common/services/redis.service';
+import { RedisService } from '../../common/services/redis.service';
 import { PaymentService } from '../payment/payment.service';
 
 describe('OrderController', () => {

@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { PaymentService } from './payment.service';
-import { PrismaService } from 'src/prisma.service';
+import { PrismaService } from '../../prisma.service';
 import { PAYMENT_GATWAY } from './constants/payment.constants';
 
 describe('PaymentService', () => {

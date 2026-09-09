@@ -3,7 +3,7 @@ import { CartItemService } from './cart-item.service';
 import { CreateCartItemDto } from './dto/create-cart-item.dto';
 import { UpdateCartItemDto } from './dto/update-cart-item.dto';
 import { type Request } from 'express';
-import { AuthGuard } from 'src/common/guard/auth.guard';
+import { AuthGuard } from '../../../common/guard/auth.guard';
 import { CartItemsQueryDto } from './dto/cart-items-query.dto';
 
 @Controller('cart-item')

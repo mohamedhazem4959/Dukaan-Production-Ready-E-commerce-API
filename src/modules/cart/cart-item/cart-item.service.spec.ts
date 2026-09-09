@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CartItemService } from './cart-item.service';
-import { PrismaService } from 'src/prisma.service';
+import { PrismaService } from '../../../prisma.service';
 import { CartService } from '../cart.service';
 
 describe('CartItemService', () => {

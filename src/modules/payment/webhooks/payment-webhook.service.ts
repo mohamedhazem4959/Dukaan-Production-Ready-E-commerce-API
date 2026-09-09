@@ -3,7 +3,7 @@ import { PaymobWebhookPayload } from './paymob-webhook.types';
 import { PaymobHmacService } from './paymob-hmac.service';
 import { PaymentWebhookIdempotencyService } from './payment-webhook-idempotency.service';
 import { PaymentService } from '../payment.service';
-import { PrismaService } from 'src/prisma.service';
+import { PrismaService } from '../../../prisma.service';
 
 @Injectable()
 export class PaymentWebhookService {

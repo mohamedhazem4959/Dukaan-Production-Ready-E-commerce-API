@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateProductReviewDto } from './dto/create-product_review.dto';
 import { UpdateProductReviewDto } from './dto/update-product_review.dto';
-import { PrismaService } from 'src/prisma.service';
+import { PrismaService } from '../../../prisma.service';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/wasm-compiler-edge';
 
 @Injectable()

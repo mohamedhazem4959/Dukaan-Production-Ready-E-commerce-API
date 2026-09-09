@@ -1,12 +1,12 @@
 import { Controller, Post, Body, UseGuards, Req, Headers, ConflictException, BadRequestException, Get, Put, Patch, Param, ParseIntPipe } from '@nestjs/common';
 import { OrderService } from './order.service';
 import { CreateOrderDto } from './dto/create-order.dto';
-import { AuthGuard } from 'src/common/guard/auth.guard';
+import { AuthGuard } from '../../common/guard/auth.guard';
 import type { Request } from 'express';
-import { RolesGuard } from 'src/common/guard/role.guard';
-import { Roles } from 'src/common/decorator/role.decorator';
+import { RolesGuard } from '../../common/guard/role.guard';
+import { Roles } from '../../common/decorator/role.decorator';
 import { updateOrderStatusDto } from './dto/update-order-status.dto';
-import { RedisService } from 'src/common/services/redis.service';
+import { RedisService } from '../../common/services/redis.service';
 import { PaymentService } from '../payment/payment.service';
 
 @Controller('order')

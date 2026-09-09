@@ -1,6 +1,6 @@
 import { Inject, Injectable, Logger, NotFoundException } from '@nestjs/common';
-import { PaymentProvider, PaymentStatus, OrderStatus, Prisma } from 'src/generated/prisma/client';
-import { PrismaService } from 'src/prisma.service';
+import { PaymentProvider, PaymentStatus, OrderStatus, Prisma } from '../../generated/prisma/client';
+import { PrismaService } from '../../prisma.service';
 import { CreatePaymentRequest } from './gateway/types/create-payment.request';
 import { CreatePaymentResult } from './gateway/types/create-payment.result';
 import { PAYMENT_GATWAY } from './constants/payment.constants';

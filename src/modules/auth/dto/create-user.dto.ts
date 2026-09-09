@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { createZodDto } from 'nestjs-zod';
-import { zSafeString } from 'src/common/utils/zod.utils';
+import { zSafeString } from '../../../common/utils/zod.utils';
 
 export const createUserSchema = z.object({
     username: zSafeString(z.string().min(3, "username must be at least 3 characters").max(20, "username must not exceed 20 characters")),

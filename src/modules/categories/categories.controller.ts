@@ -2,9 +2,9 @@ import { Controller, Get, Post, Body, Param, Delete, ParseIntPipe, Put, UseGuard
 import { CategoriesService } from './categories.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
-import { Roles } from 'src/common/decorator/role.decorator';
-import { AuthGuard } from 'src/common/guard/auth.guard';
-import { RolesGuard } from 'src/common/guard/role.guard';
+import { Roles } from '../../common/decorator/role.decorator';
+import { AuthGuard } from '../../common/guard/auth.guard';
+import { RolesGuard } from '../../common/guard/role.guard';
 
 @Controller('categories')
 export class CategoriesController {

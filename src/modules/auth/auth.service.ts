@@ -1,15 +1,15 @@
 import { ForbiddenException, Inject, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
-import { PrismaService } from 'src/prisma.service';
+import { PrismaService } from '../../prisma.service';
 import { LoginUserDto } from './dto/login-user.dto';
 import { JwtService } from '@nestjs/jwt';
 import { AccessToken } from './interfaces/access-token.interface';
 import crypto from 'crypto'
 import { TempUser } from './interfaces/temp-user.interface';
-import { MailService } from 'src/mail/mail.service';
+import { MailService } from '../../mail/mail.service';
 import { ConfigService } from '@nestjs/config';
-import { HashingService } from 'src/common/services/hashing.service';
-import { RedisService } from 'src/common/services/redis.service';
+import { HashingService } from '../../common/services/hashing.service';
+import { RedisService } from '../../common/services/redis.service';
 
 @Injectable()
 export class AuthService {

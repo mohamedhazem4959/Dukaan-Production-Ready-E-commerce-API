@@ -1,8 +1,8 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
-import { PrismaService } from 'src/prisma.service';
+import { PrismaService } from '../../prisma.service';
 import { UserService } from '../user/user.service';
-import { OrderStatus, paymentMethod, Prisma } from 'src/generated/prisma/client';
+import { OrderStatus, paymentMethod, Prisma } from '../../generated/prisma/client';
 import { Decimal } from '@prisma/client/runtime/client';
 import { CartItem } from './interface/cart-items.interface';
 import { OrderItem } from './interface/order-items.interface';

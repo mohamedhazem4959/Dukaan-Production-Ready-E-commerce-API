@@ -1,4 +1,4 @@
-import { StorageProvider } from "src/generated/prisma/enums";
+import { StorageProvider } from "../../../generated/prisma/enums";
 
 export interface UploadedFile {
   storageKey: string;

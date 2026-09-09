@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
-import { PrismaService } from 'src/prisma.service';
-import { Prisma, PromoCode, PromoCampaign } from 'src/generated/prisma/client';
+import { PrismaService } from '../../prisma.service';
+import { Prisma, PromoCode, PromoCampaign } from '../../generated/prisma/client';
 
 export type PromoCampaignWithPromoCode = PromoCampaign & { promo: PromoCode };
 

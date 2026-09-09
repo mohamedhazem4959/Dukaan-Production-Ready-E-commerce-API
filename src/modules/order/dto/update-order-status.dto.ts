@@ -1,5 +1,5 @@
 import { createZodDto } from 'nestjs-zod';
-import { OrderStatus } from 'src/generated/prisma/enums';
+import { OrderStatus } from '../../../generated/prisma/enums';
 import { z } from 'zod';
 
 const updateOrderStatusSchema = z.object({

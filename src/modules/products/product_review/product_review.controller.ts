@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, Req, UseGuards, Pars
 import { ProductReviewService } from './product_review.service';
 import { CreateProductReviewDto } from './dto/create-product_review.dto';
 import { UpdateProductReviewDto } from './dto/update-product_review.dto';
-import { AuthGuard } from 'src/common/guard/auth.guard';
+import { AuthGuard } from '../../../common/guard/auth.guard';
 
 @Controller('product-review')
 export class ProductReviewController {

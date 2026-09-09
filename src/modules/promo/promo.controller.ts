@@ -3,12 +3,12 @@ import { PromoService } from './promo.service';
 import { ValidatePromoDto } from './dto/validate-promo.dto';
 import { CreatePromoDto } from './dto/create-promo.dto';
 import { UpdatePromoStatusDto } from './dto/update-promo-status.dto';
-import { AuthGuard } from 'src/common/guard/auth.guard';
+import { AuthGuard } from '../../common/guard/auth.guard';
 import type { Request } from 'express';
-import { PrismaService } from 'src/prisma.service';
-import { Prisma } from 'src/generated/prisma/client';
-import { RolesGuard } from 'src/common/guard/role.guard';
-import { Roles } from 'src/common/decorator/role.decorator';
+import { PrismaService } from '../../prisma.service';
+import { Prisma } from '../../generated/prisma/client';
+import { RolesGuard } from '../../common/guard/role.guard';
+import { Roles } from '../../common/decorator/role.decorator';
 
 @Controller('promo')
 export class PromoController {

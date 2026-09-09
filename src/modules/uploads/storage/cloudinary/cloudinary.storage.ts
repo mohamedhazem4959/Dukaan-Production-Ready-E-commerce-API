@@ -1,9 +1,9 @@
 import { Injectable } from "@nestjs/common";
 import { CloudinaryService } from "./cloudinary.service";
-import { StorageProvider } from "src/generated/prisma/enums";
-import { IStorageProvider } from "src/modules/uploads/interfaces/storage-provider.interface";
-import { UploadOptions } from "src/modules/uploads/interfaces/upload-options.interface";
-import { UploadedFile } from "src/modules/uploads/interfaces/uploaded-file.interface";
+import { StorageProvider } from "../../../../generated/prisma/enums";
+import { IStorageProvider } from "../../interfaces/storage-provider.interface";
+import { UploadOptions } from "../../interfaces/upload-options.interface";
+import { UploadedFile } from "../../interfaces/uploaded-file.interface";
 
 @Injectable()
 export class CloudinaryStorage implements IStorageProvider {

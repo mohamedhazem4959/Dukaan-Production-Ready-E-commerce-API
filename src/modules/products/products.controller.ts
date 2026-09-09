@@ -6,9 +6,9 @@ import { UpdateStockDto } from './dto/update-stock.dto';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { memoryStorage } from 'multer';
 import { ImagesUploadPipe } from '../uploads/images-upload.pipe';
-import { AuthGuard } from 'src/common/guard/auth.guard';
-import { RolesGuard } from 'src/common/guard/role.guard';
-import { Roles } from 'src/common/decorator/role.decorator';
+import { AuthGuard } from '../../common/guard/auth.guard';
+import { RolesGuard } from '../../common/guard/role.guard';
+import { Roles } from '../../common/decorator/role.decorator';
 
 @Controller('products')
 export class ProductsController {

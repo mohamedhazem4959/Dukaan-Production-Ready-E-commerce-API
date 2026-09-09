@@ -1,4 +1,4 @@
-import { PaymentProvider } from "src/generated/prisma/client";
+import { PaymentProvider } from "../../../../generated/prisma/client";
 
 export interface CreatePaymentRequest {
   orderId: number;

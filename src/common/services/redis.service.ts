@@ -8,17 +8,27 @@ export class RedisService implements OnModuleDestroy {
   private readonly redis: Redis;
 
   constructor() {
+    const redisUrl =
+      process.env.REDIS_URL_PROD ||
+      process.env.REDIS_URL ||
+      'redis://localhost:6379';
 
-    this.redis = new Redis(
-      process.env.NODE_ENV === 'development' ? process.env.REDIS_URL! : process.env.REDIS_URL_PROD! as string
-    );
+    this.redis = new Redis(redisUrl, {
+      lazyConnect: true,
+      maxRetriesPerRequest: 1,
+      connectTimeout: 5000,
+      retryStrategy(times) {
+        if (times > 2) return null;
+        return Math.min(times * 100, 1000);
+      },
+    });
 
     this.redis.on('connect', () => {
-      console.log('Successfully connected to Upstash Redis!');
+      this.logger.log('Successfully connected to Redis!');
     });
 
     this.redis.on('error', (err) => {
-      console.error('Redis error:', err);
+      this.logger.error(`Redis connection error: ${err?.message || err}`);
     });
   }
 

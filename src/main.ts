@@ -13,6 +13,18 @@ import express, { Request, Response } from 'express';
 const server = express();
 let isInitialized = false;
 
+const swaggerCustomOptions = {
+  customCssUrl: [
+    'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.18.2/swagger-ui.min.css',
+    'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.18.2/swagger-ui-standalone-preset.min.css',
+  ],
+  customJs: [
+    'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.18.2/swagger-ui-bundle.min.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.18.2/swagger-ui-standalone-preset.min.js',
+  ],
+  customSiteTitle: 'Dukaan E-Commerce API Docs',
+};
+
 export async function bootstrapServer() {
   const adapter = new ExpressAdapter(server);
   const app = await NestFactory.create(AppModule, adapter, {
@@ -52,7 +64,7 @@ export async function bootstrapServer() {
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('/api/v1/docs', app, document);
+  SwaggerModule.setup('/api/v1/docs', app, document, swaggerCustomOptions);
 
   await app.init();
   isInitialized = true;
@@ -111,7 +123,7 @@ if (!process.env.VERCEL) {
       .build();
 
     const document = SwaggerModule.createDocument(app, config);
-    SwaggerModule.setup('/api/v1/docs', app, document);
+    SwaggerModule.setup('/api/v1/docs', app, document, swaggerCustomOptions);
 
     const port = process.env.PORT ?? 3000;
     await app.listen(port);

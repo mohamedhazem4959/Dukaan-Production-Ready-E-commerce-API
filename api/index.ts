@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from '../src/app.module';
 import { ZodValidationPipe } from 'nestjs-zod';
@@ -12,6 +13,16 @@ import express, { Request, Response } from 'express';
 
 const server = express();
 let isAppInitialized = false;
+
+// Root fallback handler for base Vercel URL
+server.get('/', (req, res) => {
+  res.json({
+    name: 'Dukaan E-Commerce API',
+    status: 'online',
+    docs: '/api/v1/docs',
+    ping: '/api/v1/ping',
+  });
+});
 
 async function bootstrap() {
   const adapter = new ExpressAdapter(server);
@@ -70,7 +81,7 @@ export default async function handler(req: Request, res: Response) {
       statusCode: 500,
       error: 'FUNCTION_INVOCATION_FAILED',
       message: error?.message || 'Serverless bootstrap error',
-      details: process.env.NODE_ENV === 'production' ? undefined : error?.stack,
+      details: error?.stack,
     });
   }
 }

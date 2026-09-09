@@ -4,6 +4,16 @@ import { MailerModule } from '@nestjs-modules/mailer';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/adapters/handlebars.adapter';
 import { join } from 'path';
+import { existsSync } from 'fs';
+
+function getTemplateDir(): string {
+  const possiblePaths = [
+    join(__dirname, 'templates'),
+    join(process.cwd(), 'dist', 'src', 'mail', 'templates'),
+    join(process.cwd(), 'src', 'mail', 'templates'),
+  ];
+  return possiblePaths.find((p) => existsSync(p)) || join(__dirname, 'templates');
+}
 
 @Global()
 @Module({
@@ -19,20 +29,20 @@ import { join } from 'path';
           secure: false,
           auth: {
             user: configService.get<string>('MAIL_USER'),
-            pass: configService.get<string>('MAIL_PASS')
+            pass: configService.get<string>('MAIL_PASS'),
           },
         },
         template: {
-          dir: join(__dirname, 'templates'),
+          dir: getTemplateDir(),
           adapter: new HandlebarsAdapter(),
           options: {
             strict: true,
           },
         },
-      })
-    })
+      }),
+    }),
   ],
   providers: [MailService, ConfigService],
-  exports: [MailService]
+  exports: [MailService],
 })
-export class MailModule { }
+export class MailModule {}
